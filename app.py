@@ -8,7 +8,8 @@ CORS(app, resources={r"/*": {"origins": "*"}})
 @app.route('/api/games', methods=['GET'])
 def get_games():
     games = [
-        {"id": "1", "title": "Temple Run", "url": "https://poki.com/en/g/temple-run-2"}
+        {"id": "1", "title": "Temple Run Legends", "url": "https://poki.com/en/g/temple-run-2"},
+        {"id": "2", "title": "Subway Surfer", "url": "https://poki.com/en/g/subway-surfers"}
     ]
     return jsonify({"status": "success", "games": games})
 
@@ -21,6 +22,12 @@ def start_game():
                 "status": "success",
                 "message": "Temple Run launched",
                 "game_url": "https://poki.com/en/g/temple-run-2"
+            })
+        elif game_id == "2":
+            return jsonify({
+                "status": "success",
+                "message": "Subway Surfer launched",
+                "game_url": "https://poki.com/en/g/subway-surfers"
             })
         return jsonify({"status": "error", "message": "Invalid game ID"}), 400
     except Exception as e:
